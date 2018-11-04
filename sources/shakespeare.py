@@ -10,7 +10,14 @@ from bs4 import BeautifulSoup, element
 # Should be safe to find all <a.speechX>,<blockquote> pairs, and then extract
 # the text within the <a> tags inside the blockquotes.
 
-url = "http://shakespeare.mit.edu/hamlet/full.html"
+
+plays = {
+    "alls_well_that_ends_well": "http://shakespeare.mit.edu/allswell/full.html",
+    "a_midsummer_nights_dream": "http://shakespeare.mit.edu/midsummer/full.html",
+    "hamlet": "http://shakespeare.mit.edu/hamlet/full.html",
+    "much_ado_about_nothing": "http://shakespeare.mit.edu/much_ado/full.html",
+    "the_tempest": "http://shakespeare.mit.edu/tempest/full.html"
+}
 
 author_class = re.compile("speech(\d+)")
 
@@ -46,7 +53,7 @@ def get_all_speeches(soup):
     for author in authors:
         speech = get_speech_for_author(author)
         if speech is not None:
-            speaker = author.string
+            speaker = author.string.upper().replace(" ", "_")
             text = " ".join(a.string for a in speech.find_all("a"))
             speeches.append((speaker, clean_speech(text)))
     return speeches
@@ -60,7 +67,7 @@ def organise_by_author(speeches):
         by_author[author].append(speech)
     return by_author
 
-def load():
+def load(source):
     """Load the speeches"""
-    soup = BeautifulSoup(requests.get(url).text, "html.parser")
+    soup = BeautifulSoup(requests.get(source).text, "html.parser")
     return organise_by_author(get_all_speeches(soup))

@@ -1,6 +1,12 @@
 import numpy
 from numpy.random import choice
 
+"""
+Markov Text Generation Module
+This module provides functions to generate text from various sources
+using a sort of markov chain (probabilistic).
+"""
+
 SPEECH_START = "$$$SPEECH_START$$$"
 SPEECH_END = "$$$SPEECH_END$$$"
 
