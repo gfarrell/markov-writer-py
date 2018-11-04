@@ -5,18 +5,44 @@ write like any of the characters. Downloads the text from the internet.
 
 ## Installation
 
-Requires python 3.x, you'll need to install the dependencies (I would suggest a
-virtual env).
+Requires python3, best run inside a virtualenv.
 
+    # requires python3
+    # setup virtualenv
+    python3 -m venv ./env
+    # activate env
+    . ./env/bin/activate
+    # install requirements
     pip install -r requirements.txt
 
-## Example Usage
+## Usage
 
-    import hamlet
-    import markov
+### Command line usage
 
-    all_speeches = hamlet.load()
-    example_speech = markov.write_like_this(all_speeches["HAMLET"])
+    from sources.shakespeare import load, plays
+    from markov import write_like_this
+
+    speeches = load(plays["hamlet"])
+    speech = write_like_this(speeches["HAMLET"])
+
+### Running a server
+
+You can run a server to generate speeches from your favourite characters! Fire
+it up as follows:
+
+    FLASK_APP=server.py flask run
+
+#### List plays
+
+    GET /plays
+
+#### List characters
+
+    GET /characters/<play>
+
+#### Generate a speech
+
+    GET /speech/<play>/<character>
 
 ## Sample Output
 

@@ -1,0 +1,15 @@
+{% import "links.html" as links %}
+<!doctype html>
+<html>
+    <head>
+        <title>Characters in {{ play }}</title>
+    </head>
+    <body>
+        <h1>Characters in {{ play }}</h1>
+        <ul>
+            {% for character in characters %}
+            <li>{{ links.speech(play, character) }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

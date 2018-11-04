@@ -1,0 +1,7 @@
+{%- macro play(name) -%}
+<a href="/characters/{{ name.replace(" ", "_").lower() }}" title="See all characters for {{ name }}">{{ name }}</a>
+{%- endmacro -%}
+
+{%- macro speech(play, character) -%}
+<a href="/speech/{{ play.replace(" ", "_").lower() }}/{{ character.replace(" ", "_").lower() }}" title="Create a speech for {{ character }} in {{ play }}">{{ character }}</a>
+{%- endmacro -%}

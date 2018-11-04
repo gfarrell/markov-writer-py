@@ -1,0 +1,15 @@
+{% import "links.html" as links %}
+<!doctype html>
+<html>
+    <head>
+        <title>All Plays</title>
+    </head>
+    <body>
+        <h1>All Plays</h1>
+        <ul>
+            {% for play in plays %}
+            <li>{{ links.play(play) }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
