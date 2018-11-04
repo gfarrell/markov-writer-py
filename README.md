@@ -30,7 +30,7 @@ Requires python3, best run inside a virtualenv.
 You can run a server to generate speeches from your favourite characters! Fire
 it up as follows:
 
-    FLASK_APP=server.py flask run
+    python server.py
 
 #### List plays
 
